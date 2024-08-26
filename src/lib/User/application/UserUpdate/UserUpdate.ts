@@ -13,6 +13,7 @@ export class UserUpdate {
     async run(id: string, name: string, email: string, createdAt: Date): Promise<void> {
         const userId = new UserId(id)
         const userExists = await this.repository.getOneById(userId);
+        console.log(userExists)
         if (!userExists) {
             throw new UserNotFoundError('User not found');
         }

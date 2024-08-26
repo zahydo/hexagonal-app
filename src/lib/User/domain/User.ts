@@ -15,4 +15,13 @@ export class User {
         this.email = email;
         this.createdAt = createdAt;
     }
+
+    public mapToPrimitives() {
+        return {
+            id: this.id.value,
+            name: this.name.value,
+            email: this.email.value,
+            createdAt: this.createdAt.value.toISOString()
+        }
+    }
 }
