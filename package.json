@@ -4,7 +4,10 @@
   "description": "hexagonal app example",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "start": "node dist/main.js",
+    "build": "npx tsc ./src/main.ts --outDir ./dist/",
+    "dev": "npx ts-node ./src/main.ts"
   },
   "author": "sahydo",
   "license": "ISC",
