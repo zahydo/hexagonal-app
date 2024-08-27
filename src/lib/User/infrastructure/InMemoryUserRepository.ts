@@ -20,4 +20,7 @@ export class InMemoryUserRepository implements UserRepository {
     async getAll(): Promise<User[]> {
         return this.users;
     }
+    async deleteAll(users: UserId[]): Promise<void> {
+        this.users = this.users.filter((u) => !users.some((id) => id.value === u.id.value));
+    }
 }

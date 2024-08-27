@@ -7,5 +7,5 @@ export interface UserRepository {
     delete(id: UserId): Promise<void>
     getOneById(id: UserId): Promise<User | null>
     getAll(): Promise<User[]>
-
+    deleteAll(users: UserId[]): Promise<void>
 }

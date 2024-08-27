@@ -3,7 +3,7 @@ import { UserId } from "src/lib/User/domain/UserId";
 import { UserRepository } from "src/lib/User/domain/UserRepository";
 
 export class InMemoryUserRepository implements UserRepository {
-    constructor(private readonly users: User[] = []) { }
+    constructor(private users: User[] = []) { }
 
     async create(user: User) {
         this.users.push(user);
@@ -27,5 +27,8 @@ export class InMemoryUserRepository implements UserRepository {
             throw new Error("User not found");
         }
         this.users.splice(index, 1);
+    }
+    async deleteAll(users: UserId[]): Promise<void> {
+        this.users = this.users.filter((u) => !users.some((id) => id.value === u.id.value));
     }
 }

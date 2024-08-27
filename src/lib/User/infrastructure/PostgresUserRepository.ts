@@ -13,7 +13,7 @@ type PostgresUser = {
     created_at: Date;
 }
 
-export class PostgresRepository implements UserRepository {
+export class PostgresUserRepository implements UserRepository {
     client: Pool;
 
     constructor(databaseUrl: string) {
@@ -62,6 +62,13 @@ export class PostgresRepository implements UserRepository {
         const result = await this.client.query<PostgresUser>(query);
 
         return result.rows.map(row => this.mapToDomain(row));
+    }
+    async deleteAll(users: UserId[]): Promise<void> {
+        const query = {
+            text: 'DELETE FROM users WHERE id = ANY($1)',
+            values: [users.map(u => u.value)]
+        }
+        await this.client.query(query);
     }
     private mapToDomain(user: PostgresUser): User {
         return new User(
