@@ -21,7 +21,7 @@ export class User {
             id: this.id.value,
             name: this.name.value,
             email: this.email.value,
-            createdAt: this.createdAt.value.toISOString()
+            createdAt: this.createdAt.value
         }
     }
 }

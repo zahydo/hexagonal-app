@@ -3,11 +3,13 @@ import { UserGetOneById } from '../../User/application/UserGetOneById/UserGetOne
 import { UserCreate } from '../../User/application/UserCreate/UserCreate';
 import { UserUpdate } from '../../User/application/UserUpdate/UserUpdate';
 import { UserDelete } from '../../User/application/UserDelete/UserDelete';
+import { PostgresUserRepository } from '../../User/infrastructure/PostgresUserRepository';
 
-import { InMemoryUserRepository } from '../../User/infrastructure/InMemoryUserRepository';
+import { env } from "./env"
 
 
-const userRepository = new InMemoryUserRepository();
+const userRepository = new PostgresUserRepository(env.DATABASE_URL);
+
 
 export const ServiceContainer = {
     user: {
